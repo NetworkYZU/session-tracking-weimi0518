@@ -21,7 +21,8 @@
         %>
         <form action="saveSession" method="POST">
             Your Favorite Food: <input type="text" name="food" value="<%=food%>"/><br/>
-            <input type="submit"/>
+            <input type="submit"/><br/>
+            <a href="LogoutServlet">Log out</a>
         </form>
     </body>
 </html>

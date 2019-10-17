@@ -9,17 +9,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author lendle
+ * @author linweimin
  */
-@WebServlet(name = "SaveCookieServlet", urlPatterns = {"/saveCookie"})
-public class SaveCookieServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,15 +32,9 @@ public class SaveCookieServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        //建立 cookie 並且儲存
-        String food = request.getParameter("food");
-        Cookie cookie = new Cookie("food", food);
-        cookie.setMaxAge(3600); //設定其生命週期
-        response.addCookie(cookie);
-        ///////////////////////////////////////////////////////////////
-        response.sendRedirect("cookie.jsp");
+        HttpSession session=request.getSession();
+        session.invalidate();
+        //response.sendRedirect(location);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
